@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">Tourist Dash</string>
+    <string name="restart_game_button">Play Again</string>
+    <string name="game_over_text">Game Over!</string>
+    <string name="start_game_button">Play!</string>
+    <string name="how_to_play_button">Help</string>
+    <string name="high_scores_button">High Scores</string>
+    <string name="helpTitle">How To Play</string>
+    <string name="helpContent">Guide the commuter through the streams of tourists for as long as you can. Tilt the phone left or right to control the movement of the commuter.</string>
+    <string name="mainMenuButtonText">Main Menu</string>
+    <string name="highscoreHeader">High Scores</string>
+
+<string name="namePrompt">Enter name</string>
+<string name="saveButton">Save</string>
+<string name="closeButton">Cancel</string>
+</resources>

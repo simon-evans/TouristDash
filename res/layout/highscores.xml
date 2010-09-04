@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : highscores.xml
+    Created on : 03 September 2010, 00:47
+    Author     : Simon
+    Description:
+        Purpose of the document follows.
+-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#ffff"
+    android:textColor="#ff000000" >
+
+    <TextView
+        style="@style/HeaderText"
+        android:text="@string/highscoreHeader" />
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/highscoresTable"
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="horizontal"
+        android:paddingBottom="15sp">
+
+        <Button
+           android:id="@+id/mainMenuButton"
+           android:text="@string/mainMenuButtonText"
+           style="@style/Button" />
+
+   </LinearLayout>
+   
+</LinearLayout>
