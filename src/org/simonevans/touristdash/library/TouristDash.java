@@ -270,7 +270,6 @@ public class TouristDash extends Activity {
                 SensorManager.getOrientation(rot, values);
 
                 double roll = (180 / Math.PI) * values[2];
-                String s = String.valueOf(roll);
                 game.userXCoord += roll;
                 if (game.userXCoord > 281) {
                     game.userXCoord = 281;

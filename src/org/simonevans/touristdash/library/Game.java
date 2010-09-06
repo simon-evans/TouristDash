@@ -6,7 +6,8 @@
 package org.simonevans.touristdash.library;
 
 import java.util.ArrayList;
-import java.util.Random;
+
+import android.util.Log;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Game {
     int score;
     boolean gameover;
     boolean playing = false;
-    int INITIAL_ENEMIES = 6;
+    int INITIAL_ENEMIES = 5;
 
     ArrayList<Enemy> enemies;
 
@@ -27,16 +28,15 @@ public class Game {
         reset();
     }
 
-    Random delayGen = new Random(System.currentTimeMillis());
 
     public void reset() {
 
         enemies = new ArrayList<Enemy>();
 
-        int i=0;
+        int i = 0;
         while(i < INITIAL_ENEMIES) {
-            enemies.add(new Enemy());
-            i++;
+        		enemies.add(new Enemy(i));
+        		i++;
         }
 
         userXCoord = 140;
@@ -49,45 +49,31 @@ public class Game {
 
     public void update() {
         Enemy enemy;
-        score++;
         for(int i = 0; i < enemies.size(); i++) {
-             enemy = enemies.get(i);
-             enemy.yCoord += 5;
-
+        	enemy = enemies.get(i);
+            enemy.type.update(enemy);
+        	
             if(enemy.yCoord > 375) {
-                if(userXCoord - 39 < enemy.xCoord && enemy.xCoord < userXCoord + 39) {
+                if(enemy.yCoord < 420 && enemy.type.detectCollision(this, enemy)) {
                     playing = false;
                     gameover = true;
-                } else if(enemy.yCoord > 440) {
+                } else if(enemy.yCoord > 480) {
                     enemy.respawn();
                 }
             }
         }
-        if((score % 1000) == 0) {
+        if((score % 1000) == 0 && score > 0) {
             addEnemy();
         }
+        score++;
+        
 
     }
 
     private void addEnemy() {
         
-        enemies.add(new Enemy());
+        enemies.add(new Enemy(enemies.size() + 1));
 
-    }
-
-    class Enemy {
-
-        float xCoord;
-        float yCoord;
-
-        Enemy() {
-            respawn();
-        }
-
-        private void respawn() {
-            yCoord = -66 - (delayGen.nextInt(8) * 80);
-            xCoord = delayGen.nextInt(8) * 40;
-        }
     }
 
 }

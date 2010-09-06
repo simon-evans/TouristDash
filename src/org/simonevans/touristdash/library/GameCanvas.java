@@ -16,6 +16,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import java.util.*;
 
 import java.lang.String;
 
@@ -32,6 +33,8 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
 
         messageHandler = handle;
         canvasThread = new CanvasThread();
+        
+        bitmaps = new HashMap<Integer,Bitmap>();
 
         game = new Game();
         Log.d(this.getClass().getName(), "FOO BAR");
@@ -44,8 +47,8 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     int backgroundY;
 
     Bitmap playerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.man);
-    Bitmap cameraManBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.camera_man);
     Bitmap backgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.background_1);
+    static HashMap<Integer,Bitmap> bitmaps;
 
     @Override
     public void onDraw(Canvas c) {
@@ -91,10 +94,11 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
 
     private void drawEnemies(Canvas c) {
 
-        Game.Enemy enemy;
+        Enemy enemy;
         for(int i = 0; i < game.enemies.size(); i++) {
+        	//Log.w(GameCanvas.class.getName(), String.valueOf(i));
             enemy = game.enemies.get(i);
-            c.drawBitmap(cameraManBitmap, enemy.xCoord, enemy.yCoord, null);
+            c.drawBitmap(getBitmap(enemy.type.enemyImage), enemy.xCoord, enemy.yCoord, null);
         }
     }
 
@@ -116,6 +120,16 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
 
     private void drawBackground(Canvas c) {
         c.drawBitmap(backgroundBitmap, 0, backgroundY, null);
+    }
+    
+    private Bitmap getBitmap(int resourceId) {
+    	if(bitmaps.containsKey(resourceId)) {
+    		return bitmaps.get(resourceId);
+    	} else {
+    		Bitmap newBitmap = BitmapFactory.decodeResource(getResources(), resourceId);
+    		bitmaps.put(resourceId, newBitmap);
+    		return newBitmap;
+    	}
     }
 
 
@@ -139,7 +153,7 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
                     GameCanvas.this.messageHandler.sendMessage(msg);
                 } else {
                     game.update();
-                    backgroundY += 5;
+                    backgroundY += 6;
                     if(backgroundY == 0) {
                         backgroundY = -480;
                     }
