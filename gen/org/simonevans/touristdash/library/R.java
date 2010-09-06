@@ -15,9 +15,11 @@ public final class R {
         public static final int banner=0x7f020001;
         public static final int buttonstretchy=0x7f020002;
         public static final int camera_man=0x7f020003;
-        public static final int icon=0x7f020004;
-        public static final int man=0x7f020005;
-        public static final int startup_banner=0x7f020006;
+        public static final int dead_enemy=0x7f020004;
+        public static final int fat_tourist=0x7f020005;
+        public static final int icon=0x7f020006;
+        public static final int man=0x7f020007;
+        public static final int startup_banner=0x7f020008;
     }
     public static final class id {
         public static final int canvasView=0x7f060005;
