@@ -24,7 +24,13 @@ public class Enemy {
     public void respawn() {
         this.yCoord = -66 - (delayGen.nextInt(7) * 60);
         
-        int randType = delayGen.nextInt(10);
+        this.changeType();
+        putInCol(delayGen.nextInt(8));
+    }
+    
+    protected void changeType() {
+    	
+    	int randType = delayGen.nextInt(10);
         
         switch(randType) {
         	case 0:
@@ -36,17 +42,21 @@ public class Enemy {
         	case 6:
         	case 7:
             	type = basic;
-            	this.xCoord = delayGen.nextInt(8) * 40;
             	break;
         	case 8:
         	case 9:
             	type = fatty;
-            	this.xCoord = (delayGen.nextInt(3) * 80) + 40;	
             	break;
-        }		
+        }	
+    	
     }
     
-    public void kill() {
+    void putInCol(int i) {
+    	this.xCoord = i * 40;
+    }
+    
+    public void kill(Game theGame) {
+    	type.kill(theGame);
     	type = dead;
     }
 

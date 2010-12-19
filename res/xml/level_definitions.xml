@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<levels>
+	<level>
+		<levelnum>1</levelnum>
+		<enemiesperrow>5</enemiesperrow>
+		<rowspacing>200</rowspacing>
+		<levellength>1000</levellength>
+		<reward>50</reward>
+	</level>
+
+</levels>

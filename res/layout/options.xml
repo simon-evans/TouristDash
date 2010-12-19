@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+	
+	<TextView
+	  	android:layout_width="wrap_content"
+	  	android:layout_height="wrap_content"
+	  	android:text="@string/options_heading"
+	  	style="@style/HeaderText"
+	  	android:layout_gravity="center_horizontal" />
+  
+  <TableLayout
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+	android:layout_marginLeft="20sp"
+	android:layout_marginRight="20sp"
+	android:layout_marginTop="20sp"
+	android:stretchColumns="0">
+  	<TableRow>
+	  		
+	 	<android:TextView
+	  		android:layout_width="wrap_content"
+	  		android:layout_height="wrap_content"
+	  		android:id="@+id/ammoLabel"
+	  		style="@style/SmallText"
+	  		android:text="@string/addCashLabel" />
+	  		
+		
+	    <android:Button
+	    	style="@style/Button"
+	    	android:id="@+id/addCashButton"
+	    	android:text="@string/add_ammo_button"
+	    	android:layout_gravity="center_vertical" />
+
+  	</TableRow>
+  	
+  </TableLayout>
+
+
+</LinearLayout>

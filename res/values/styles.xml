@@ -2,13 +2,15 @@
 <resources>
     <style name="Button" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_horizontal|center_vertical</item>
-        <item name="android:textColor">#FF000000</item>
+        <item name="android:textColor">@color/custom_button_selector</item>
         <item name="android:textSize">20sp</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
         <item name="android:background">@drawable/buttonstretchy</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">2sp</item>
+        <item name="android:paddingRight">2sp</item>
     </style>
 
     <style name="HeaderText">
@@ -20,12 +22,15 @@
             <item name="android:textSize">35sp</item>
     </style>
 
-    <style name="ContentText">
-            <item name="android:layout_width">wrap_content</item>
-            <item name="android:layout_height">wrap_content</item>
-            <item name="android:paddingLeft">15sp</item>
-            <item name="android:textColor">#FF000000</item>
+    <style name="ContentText" parent="@style/SmallText">
             <item name="android:paddingTop">20sp</item>
+            <item name="android:paddingLeft">15sp</item>
+    </style>
+    
+    <style name="SmallText">
+    		<item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:textColor">#FF000000</item>
             <item name="android:textSize">18sp</item>
     </style>
 </resources>

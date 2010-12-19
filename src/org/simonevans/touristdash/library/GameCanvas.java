@@ -36,9 +36,16 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
         
         bitmaps = new HashMap<Integer,Bitmap>();
 
-        game = new Game();
-        Log.d(this.getClass().getName(), "FOO BAR");
         setFocusable(true);
+        
+        whitePaint = new Paint();
+        whitePaint.setColor(Color.WHITE);
+        
+        blackPaint = new Paint();
+        blackPaint.setTextSize(22);
+        blackPaint.setColor(Color.BLACK);
+        blackPaint.setStyle(Paint.Style.STROKE);
+        
     }
 
     Handler messageHandler;
@@ -50,16 +57,21 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
     Bitmap backgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.background_1);
     static HashMap<Integer,Bitmap> bitmaps;
 
+    Paint whitePaint;
+    Paint blackPaint;
+    
     @Override
     public void onDraw(Canvas c) {
 
         c.drawColor(Color.WHITE);
         
         drawBackground(c);
+        drawEnemies(c);
+        
+        drawBullets(c);
 
         drawUser(c);
-        drawEnemies(c);
-
+        
         drawScore(c);
         
 
@@ -94,33 +106,43 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
 
     private void drawEnemies(Canvas c) {
 
-        Enemy enemy;
-        for(int i = 0; i < game.enemies.size(); i++) {
+        for(Enemy enemy : game.enemies) {
         	//Log.w(GameCanvas.class.getName(), String.valueOf(i));
-            enemy = game.enemies.get(i);
             c.drawBitmap(getBitmap(enemy.type.enemyImage), enemy.xCoord, enemy.yCoord, null);
         }
     }
+    
+    
+    String ammoText;
+    String scoreText;
+    
+    static final String scoreBeginning = "Score: ";
+    static final String ammoBeginning = "Ammo: ";
+    
+    static final float textParam2 = 5.0f;
 
     private void drawScore(Canvas c) {
 
-        String text = "Score: ".concat(String.valueOf(game.score));
+        scoreText = scoreBeginning.concat(String.valueOf(game.score));
+    	ammoText = ammoBeginning.concat(String.valueOf(game.ammo));
 
-        Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
-        c.drawRect(0,0,320,20, paint);
+        c.drawRect(0,0,320,25, whitePaint);
 
-        paint.setTextSize(20);
-        paint.setColor(Color.BLACK);
-
-        paint.setStyle(Paint.Style.STROKE);
-        c.drawText(text, 5.0f, 15.0f, paint);
-        c.drawLine(0, 20, 320, 20, paint);
+        c.drawText(scoreText, textParam2, 15.0f, blackPaint);
+        c.drawText(ammoText, 200.0f, 15.0f, blackPaint);
+        c.drawLine(0, 20, 320, 20, blackPaint);
     }
 
     private void drawBackground(Canvas c) {
         c.drawBitmap(backgroundBitmap, 0, backgroundY, null);
     }
+    
+    private void drawBullets(Canvas c) {
+    	for(Bullet bullet : game.bullets) {
+    		c.drawBitmap(getBitmap(R.drawable.hat), bullet.xCoord, bullet.yCoord, null);
+    	}
+    }
+    
     
     private Bitmap getBitmap(int resourceId) {
     	if(bitmaps.containsKey(resourceId)) {
@@ -153,8 +175,8 @@ public class GameCanvas extends SurfaceView implements SurfaceHolder.Callback {
                     GameCanvas.this.messageHandler.sendMessage(msg);
                 } else {
                     game.update();
-                    backgroundY += 6;
-                    if(backgroundY == 0) {
+                    backgroundY += 3 + game.speedIncrease;
+                    if(backgroundY >= 0) {
                         backgroundY = -480;
                     }
                     c = null;

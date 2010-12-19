@@ -10,6 +10,9 @@ package org.simonevans.touristdash.library;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int custom_button_selector=0x7f080000;
+    }
     public static final class drawable {
         public static final int background_1=0x7f020000;
         public static final int banner=0x7f020001;
@@ -17,23 +20,43 @@ public final class R {
         public static final int camera_man=0x7f020003;
         public static final int dead_enemy=0x7f020004;
         public static final int fat_tourist=0x7f020005;
-        public static final int icon=0x7f020006;
-        public static final int man=0x7f020007;
-        public static final int startup_banner=0x7f020008;
+        public static final int hat=0x7f020006;
+        public static final int icon=0x7f020007;
+        public static final int man=0x7f020008;
+        public static final int startup_banner=0x7f020009;
     }
     public static final class id {
-        public static final int canvasView=0x7f060005;
-        public static final int closeButton=0x7f060008;
-        public static final int finalScore=0x7f060000;
-        public static final int helpButton=0x7f06000b;
-        public static final int highScoresButton=0x7f06000a;
-        public static final int highscoresTable=0x7f060004;
-        public static final int mainMenuButton=0x7f060003;
-        public static final int nameInput=0x7f060006;
-        public static final int playButton=0x7f060009;
-        public static final int restartButton=0x7f060002;
-        public static final int saveButton=0x7f060007;
-        public static final int smallHighscoresTable=0x7f060001;
+        public static final int ContinuousButton=0x7f09000b;
+        public static final int addAmmoButton=0x7f090017;
+        public static final int addCashButton=0x7f09000a;
+        public static final int ammoLabel=0x7f090009;
+        public static final int canvasView=0x7f090005;
+        public static final int closeButton=0x7f090008;
+        public static final int currentAmmoLabel=0x7f090016;
+        public static final int decreaseLevelButton=0x7f09000c;
+        public static final int finalScore=0x7f090000;
+        public static final int getUpgradesButton=0x7f09001c;
+        public static final int helpButton=0x7f090014;
+        public static final int highScoresButton=0x7f090010;
+        public static final int highscoresTable=0x7f090004;
+        public static final int increaseLevelButton=0x7f09000e;
+        public static final int mainMenuButton=0x7f090003;
+        public static final int moneyEarned=0x7f090019;
+        public static final int moneyScavenged=0x7f09001a;
+        public static final int nameInput=0x7f090006;
+        public static final int nextWaveButton=0x7f09001b;
+        public static final int optionsButton=0x7f090013;
+        public static final int playButton=0x7f09000f;
+        public static final int playWaveButton=0x7f09000d;
+        public static final int restartButton=0x7f090002;
+        public static final int saveButton=0x7f090007;
+        public static final int smallHighscoresTable=0x7f090001;
+        public static final int statisticsButton=0x7f090012;
+        public static final int statsTable=0x7f090015;
+        public static final int tryAgainButton=0x7f09001e;
+        public static final int upgradesButton=0x7f090011;
+        public static final int waveCompleteHeading=0x7f090018;
+        public static final int waveFailedHeading=0x7f09001d;
     }
     public static final class layout {
         public static final int gameover=0x7f030000;
@@ -41,26 +64,58 @@ public final class R {
         public static final int howtoplay=0x7f030002;
         public static final int main=0x7f030003;
         public static final int namedialog=0x7f030004;
-        public static final int startup=0x7f030005;
+        public static final int options=0x7f030005;
+        public static final int playmenu=0x7f030006;
+        public static final int startup=0x7f030007;
+        public static final int statistics=0x7f030008;
+        public static final int upgrades=0x7f030009;
+        public static final int wavecomplete=0x7f03000a;
+        public static final int wavefailed=0x7f03000b;
+    }
+    public static final class raw {
+        public static final int inserts=0x7f050000;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int closeButton=0x7f04000c;
-        public static final int game_over_text=0x7f040002;
-        public static final int helpContent=0x7f040007;
-        public static final int helpTitle=0x7f040006;
-        public static final int high_scores_button=0x7f040005;
-        public static final int highscoreHeader=0x7f040009;
-        public static final int how_to_play_button=0x7f040004;
-        public static final int mainMenuButtonText=0x7f040008;
-        public static final int namePrompt=0x7f04000a;
-        public static final int restart_game_button=0x7f040001;
-        public static final int saveButton=0x7f04000b;
-        public static final int start_game_button=0x7f040003;
+        public static final int addCashLabel=0x7f06001f;
+        public static final int add_ammo_button=0x7f060018;
+        public static final int ammoUpgradeLabel=0x7f06001a;
+        public static final int app_name=0x7f060000;
+        public static final int closeButton=0x7f06001e;
+        public static final int continuous_button=0x7f06000d;
+        public static final int decrease_button=0x7f06000f;
+        public static final int game_over_text=0x7f060002;
+        public static final int get_upgrades_button=0x7f060015;
+        public static final int helpContent=0x7f060009;
+        public static final int helpTitle=0x7f060008;
+        public static final int high_scores_button=0x7f060005;
+        public static final int highscoreHeader=0x7f06000b;
+        public static final int how_to_play_button=0x7f060004;
+        public static final int increase_button=0x7f06000e;
+        public static final int mainMenuButtonText=0x7f06000a;
+        public static final int money_earned=0x7f060012;
+        public static final int money_found=0x7f060013;
+        public static final int namePrompt=0x7f06001c;
+        public static final int next_wave_button=0x7f060014;
+        public static final int options_button=0x7f06000c;
+        public static final int options_heading=0x7f06001b;
+        public static final int restart_game_button=0x7f060001;
+        public static final int saveButton=0x7f06001d;
+        public static final int start_game_button=0x7f060003;
+        public static final int statistics_button=0x7f060007;
+        public static final int statistics_header=0x7f060017;
+        public static final int try_again_button=0x7f060016;
+        public static final int upgrades_button=0x7f060006;
+        public static final int upgrades_heading=0x7f060019;
+        public static final int wave_complete=0x7f060010;
+        public static final int wave_failed=0x7f060011;
     }
     public static final class style {
-        public static final int Button=0x7f050000;
-        public static final int ContentText=0x7f050002;
-        public static final int HeaderText=0x7f050001;
+        public static final int Button=0x7f070000;
+        public static final int ContentText=0x7f070002;
+        public static final int HeaderText=0x7f070001;
+        public static final int SmallText=0x7f070003;
+    }
+    public static final class xml {
+        public static final int level_definitions=0x7f040000;
     }
 }

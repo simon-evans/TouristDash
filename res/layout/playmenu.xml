@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical"
+  android:background="#ffff"
+  android:textColor="#ff000000"
+>
+
+	<TextView
+		android:text="Choose game style:"
+		style="@style/HeaderText" />
+
+	<Button
+		android:id="@+id/ContinuousButton"
+		style="@style/Button"
+		android:gravity="center_horizontal"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/continuous_button"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="10sp" />
+		
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="5sp" >
+			
+			<Button
+				android:id="@+id/decreaseLevelButton"
+				style="@style/Button"
+				android:text="@string/decrease_button"
+				android:layout_marginRight="3sp" />
+				
+			<Button
+				android:id="@+id/playWaveButton"
+				style="@style/Button" />
+				
+			<Button
+				android:id="@+id/increaseLevelButton"
+				style="@style/Button"
+				android:text="@string/increase_button"
+				android:layout_marginLeft="3sp" />
+				
+	  
+  		</LinearLayout>
+</LinearLayout>

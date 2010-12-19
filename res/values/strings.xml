@@ -6,12 +6,30 @@
     <string name="start_game_button">Play!</string>
     <string name="how_to_play_button">Help</string>
     <string name="high_scores_button">High Scores</string>
+    <string name="upgrades_button">Upgrades</string>
+    <string name="statistics_button">Stats</string>
     <string name="helpTitle">How To Play</string>
-    <string name="helpContent">Guide the commuter through the streams of tourists for as long as you can. Tilt the phone left or right to control the movement of the commuter.</string>
+    <string name="helpContent">Guide the commuter through the streams of tourists for as long as you can.\n\nTilt the phone left or right to control the movement of the commuter.\n\nTap the phone to throw your hat into the crowds.</string>
     <string name="mainMenuButtonText">Main Menu</string>
     <string name="highscoreHeader">High Scores</string>
-
-<string name="namePrompt">Enter name</string>
-<string name="saveButton">Save</string>
-<string name="closeButton">Cancel</string>
+    <string name="options_button">Options</string>
+    <string name="continuous_button">Continuous</string>
+    <string name="increase_button">+</string>
+    <string name="decrease_button">-</string>
+    <string name="wave_complete">Completed Wave </string>
+    <string name="wave_failed">Failed Wave </string>
+    <string name="money_earned">Money Earned</string>
+    <string name="money_found">Money Found</string>
+    <string name="next_wave_button">Next Wave</string>
+    <string name="get_upgrades_button">Get Upgrades</string>
+    <string name="try_again_button">Try Again</string>
+    <string name="statistics_header">Stats</string>
+    <string name="add_ammo_button">+</string>
+	<string name="upgrades_heading">Upgrades</string>
+	<string name="ammoUpgradeLabel">Hat Ammo</string>
+	<string name="options_heading">Options</string>
+	<string name="namePrompt">Enter name</string>
+	<string name="saveButton">Save</string>
+	<string name="closeButton">Cancel</string>
+	<string name="addCashLabel">Add Cash</string>
 </resources>

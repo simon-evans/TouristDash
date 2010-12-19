@@ -8,4 +8,8 @@ public class FatTourist extends EnemyType {
 		enemyImage = R.drawable.fat_tourist;
 	}
 	
+	public void kill(Game theGame) {
+		super.kill(theGame);
+		theGame.fattysKilled++;
+	}
 }

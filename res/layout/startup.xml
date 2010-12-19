@@ -6,37 +6,65 @@
         android:orientation="vertical"
         android:background="#ffff"
         android:textColor="#ff000000">
+        
+      <TextView
+      	android:text="Tourist Dash"
+      	android:layout_width="wrap_content"
+      	android:layout_height="wrap_content"
+      	style="@style/HeaderText"
+      	android:layout_gravity="center_horizontal" />
 
-        <ImageView
-            android:src="@drawable/startup_banner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            />
-
-    <LinearLayout
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingTop="10sp"
-        android:orientation="horizontal">
+        android:stretchColumns="*"
+        >
         
-        <Button
-            android:id="@+id/playButton"
-            android:text="@string/start_game_button"
-            style="@style/Button" />
-
-        <Button
-            android:id="@+id/highScoresButton"
-            android:text="@string/high_scores_button"
-            style="@style/Button"
-            android:layout_marginLeft="20sp" />
-
-        <Button
-            android:layout_marginLeft="20sp"
-            android:id="@+id/helpButton"
-            android:text="@string/how_to_play_button"
-            style="@style/Button" />
-
-    </LinearLayout>
+        <TableRow
+        	android:layout_marginTop="10sp">
+        
+	        <Button
+	            android:id="@+id/playButton"
+	            android:text="@string/start_game_button"
+	            style="@style/Button" />
+	
+	        <Button
+	            android:id="@+id/highScoresButton"
+	            android:text="@string/high_scores_button"
+	            style="@style/Button"
+	            android:layout_marginLeft="20sp" />
+	            
+		</TableRow>
+		<TableRow
+			android:layout_marginTop="10sp">
+			
+			<Button
+				android:id="@+id/upgradesButton"
+				android:text="@string/upgrades_button"
+				style="@style/Button" />
+				
+			<Button
+				android:id="@+id/statisticsButton"
+				android:text="@string/statistics_button"
+				style="@style/Button"
+	            android:layout_marginLeft="20sp" />
+		</TableRow>
+		<TableRow
+			android:layout_marginTop="10sp">
+	
+			<Button
+				android:id="@+id/optionsButton"
+				android:text="@string/options_button"
+				style="@style/Button" />
+		
+	        <Button
+	            android:layout_marginLeft="20sp"
+	            android:id="@+id/helpButton"
+	            android:text="@string/how_to_play_button"
+	            style="@style/Button" />
+				
+		</TableRow>
+    </TableLayout>
     
 </LinearLayout>

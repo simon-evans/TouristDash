@@ -12,5 +12,12 @@ public class DeadEnemy extends EnemyType {
 		return false;
 	}
 	
+	public int detectShot(Game game, Enemy enemy) {
+		return -1;
+	}
+	
+	public void update(Enemy thisEnemy, Game theGame) {
+		thisEnemy.yCoord += (3 + theGame.speedIncrease);
+	}
 	
 }
