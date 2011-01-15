@@ -4,9 +4,13 @@
  */
 package org.simonevans.touristdash.library;
 
+import org.simonevans.touristdash.library.sensor.RollListener;
+import org.simonevans.touristdash.library.sensor.RollReader;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -14,19 +18,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.WindowManager;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
@@ -37,10 +35,12 @@ import android.widget.TextView;
  *
  * @author Simon
  */
-public class TouristDash extends Activity implements OnClickListener {
+public class TouristDash extends Activity implements OnClickListener, RollListener {
 
     protected static final int GAMEOVER = 0x8421;
+    private static Context CONTEXT;
     static final double PIUNDER180 = 180.0 / Math.PI;
+	private static final float ROLL_SENSITIVITY = 20;
     Game game;
     GameCanvas gameCanvas;
     HighScoreOpenHelper highscoresDb;
@@ -54,19 +54,15 @@ public class TouristDash extends Activity implements OnClickListener {
     	
     	
         super.onCreate(bundle);
-        
-        
-        prefs = getPreferences(MODE_PRIVATE);
-        
-    	this.playerName = prefs.getString("playerName", "");
-
-        gameCanvas = new GameCanvas(this, messageHandler);
-        
-        gameCanvas.setOnClickListener(this);
 
         init();
         
+    	this.playerName = prefs.getString("playerName", "");
+    	
+        gameCanvas = new GameCanvas(this, messageHandler);
+        gameCanvas.setOnClickListener(this);
 
+        CONTEXT = this;
         setContentView(gameCanvas);
     }
 
@@ -80,16 +76,13 @@ public class TouristDash extends Activity implements OnClickListener {
         editor.putString("playerName", playerName);
         editor.commit();
         
-        sensorManager.unregisterListener(sensorListener);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        
+        init();
     	this.playerName = prefs.getString("playerName", "");
-    	
-    	sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override
@@ -101,9 +94,7 @@ public class TouristDash extends Activity implements OnClickListener {
 
     protected void init() {
 
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
-        //sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(SensorManager.SENSOR_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
+        prefs = getPreferences(MODE_PRIVATE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -111,10 +102,19 @@ public class TouristDash extends Activity implements OnClickListener {
         new UserData(this);
 
         highscoresDb = new HighScoreOpenHelper(this);
+        Log.e("SIMON", "Called init");
+        if(RollReader.isSupported()) {
+    		RollReader.startListening(this);
+    	} else {
+    		/**
+    		 * SWITCH TO A VIEW INFORMING USER THAT GAME WILL NOT WORK & INVITE THEM TO SUBMIT COMMENT DETAILING THEIR PHONE MAKE/MODEL
+    		 * Possible mention which sensor is missing
+    		 * 
+    		 * It's possible this can be avoided by looking for a gyroscope?
+    		 */
+    	}
     }
-
     
-    SensorManager sensorManager;
     Handler messageHandler = new Handler() {
 
         @Override
@@ -129,7 +129,7 @@ public class TouristDash extends Activity implements OnClickListener {
     };
 
     protected void gameOverScreen() {
-    	
+    	RollReader.stopListening();
         setContentView(R.layout.gameover);
         TextView finalScore = (TextView) findViewById(R.id.finalScore);
         final String score = String.valueOf(game.score);
@@ -187,6 +187,7 @@ public class TouristDash extends Activity implements OnClickListener {
         restartButton.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
+            	RollReader.startListening(TouristDash.this);
                 setContentView(gameCanvas);
             }
         });
@@ -201,25 +202,6 @@ public class TouristDash extends Activity implements OnClickListener {
         });
 
     }
-    
-    SensorEventListener sensorListener = new SensorEventListener() {
-
-		public void onSensorChanged(SensorEvent e) {
-			double roll = (Math.PI / 180) * e.values[2];
-            Log.w("SIMON", Double.toString(roll));
-            game.userXCoord += roll;
-            if (game.userXCoord > 281) {
-                game.userXCoord = 281;
-            } else if (game.userXCoord < 0) {
-                game.userXCoord = 0;
-            }
-		}
-
-		@Override
-		public void onAccuracyChanged(Sensor sensor, int accuracy) {
-			
-		}
-    };
     
     private void putHighScoreRows(int count, TableLayout container) {
 
@@ -255,10 +237,23 @@ public class TouristDash extends Activity implements OnClickListener {
 
     }
 
+    public static Context getContext() {
+    	return CONTEXT;
+    }
     
 
 	@Override
 	public void onClick(View view) {
 		game.shoot();
+	}
+
+	@Override
+	public void onRollChanged(float roll) {
+        game.userXCoord += (roll * ROLL_SENSITIVITY);
+        if (game.userXCoord > 281) {
+            game.userXCoord = 281;
+        } else if (game.userXCoord < 0) {
+            game.userXCoord = 0;
+        }
 	}
 }

@@ -62,6 +62,8 @@ public class Game {
 
         gameover = false;
 
+        lastFrameTime = 0;
+        newTime = 0;
         score = 0;
         counter = 0;
         speedIncrease = 1;
