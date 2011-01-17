@@ -34,11 +34,6 @@
         android:orientation="horizontal"
         android:paddingBottom="15sp">
 
-        <Button
-           android:id="@+id/mainMenuButton"
-           android:text="@string/mainMenuButtonText"
-           style="@style/Button" />
-
    </LinearLayout>
    
 </LinearLayout>
