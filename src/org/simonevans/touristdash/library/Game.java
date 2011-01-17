@@ -13,6 +13,10 @@ import android.util.Log;
 /**
  *
  * @author Simon
+ * 
+ * Handles most of the game logic with  regard updating.
+ * Eventually this should all be moved into an interface.
+ * 
  */
 public class Game {
 
@@ -91,6 +95,13 @@ public class Game {
         
     }
     
+    /**
+     * 
+     * This is used for every game and changes game parameters when the counter hits 
+     * particular values.
+     * 
+     */
+    
     protected void standardCheckScore() {
     	if((counter % 1000) == 0) {
             addEnemy();
@@ -101,15 +112,33 @@ public class Game {
         }
     }
     
+    /**
+     * 
+     * New types of games may override this method with their own way to change as
+     * the game progresses.
+     * 
+     */
+    
     protected void specialCheckScore() {
         if((counter % 2000) == 0) {
         	speedIncrease += 1;
         }
     }
     
+    /**
+     * 
+     * Updates the location of bullets on screen and removes any that have gone 
+     * above the top of the screen.
+     * 
+     * Using the for(Bullet bullet : bullets) syntax caused concurrency issues.
+     * Even synchronizing it did not fix this.
+     * 
+     */
     private void updateBullets() {
-    	for(Bullet bullet : bullets) {
-    		bullet.update();
+    	Bullet bullet;
+		for(int i = 0; i < bullets.size(); i++) {
+    		bullet = bullets.get(i);
+			bullet.update();
     		    		
     		if(bullet.yCoord < 0) {
     			bullets.remove(bullet);
@@ -124,7 +153,9 @@ public class Game {
         	enemy.type.update(enemy,this);
             if((index = enemy.type.detectShot(this, enemy)) >= 0) {
             	enemy.kill(this);
-            	bullets.remove(index);
+            	synchronized(this) {
+            		bullets.remove(index);
+            	}
             }
             
             if(enemy.yCoord > 375) {
@@ -152,7 +183,9 @@ public class Game {
     
     public void shoot() {
     	if(System.currentTimeMillis() - lastShot > 1000 && ammo > 0) {
-    		bullets.add(new Bullet(userXCoord));
+    		synchronized(this) {
+    			bullets.add(new Bullet(userXCoord));
+    		}
     		ammo--;
     		lastShot = System.currentTimeMillis();
     	}

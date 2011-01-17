@@ -39,7 +39,6 @@ public class TouristDash extends Activity implements OnClickListener, RollListen
 
     protected static final int GAMEOVER = 0x8421;
     private static Context CONTEXT;
-    static final double PIUNDER180 = 180.0 / Math.PI;
 	private static final float ROLL_SENSITIVITY = 20;
     Game game;
     GameCanvas gameCanvas;
