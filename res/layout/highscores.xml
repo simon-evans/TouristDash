@@ -4,8 +4,7 @@
     Document   : highscores.xml
     Created on : 03 September 2010, 00:47
     Author     : Simon
-    Description:
-        Purpose of the document follows.
+    Description: Layout for Highscores Activity
 -->
 
 <LinearLayout

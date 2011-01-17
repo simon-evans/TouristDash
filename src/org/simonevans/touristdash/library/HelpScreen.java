@@ -12,14 +12,6 @@ public class HelpScreen extends Activity {
 		super.onCreate(b);
 		
         setContentView(R.layout.howtoplay);
-
-        Button mainMenuButton = (Button) findViewById(R.id.mainMenuButton);
-        mainMenuButton.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-               finish();
-            }
-        });
     }
 
 }

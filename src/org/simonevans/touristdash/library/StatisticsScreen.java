@@ -34,14 +34,6 @@ public class StatisticsScreen extends Activity {
         table.addView(addStat("Current Money", "£" + Integer.toString(currentMoney)));
         table.addView(addStat("Total Money Earned", "£" + Integer.toString(totalEarned)));
         table.addView(addStat("Total Tourists Hit", Integer.toString(totalKilled)));
-        
-        Button mainMenuButton = (Button) findViewById(R.id.mainMenuButton);
-        mainMenuButton.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-               finish();
-            }
-        });
     }
 	
 	private TableRow addStat(String label, String data) {

@@ -4,8 +4,7 @@
     Document   : howtoplay.xml
     Created on : 02 September 2010, 20:13
     Author     : Simon
-    Description:
-        The layout file for the how to play screen within the game.
+    Description: The layout file for the how to play screen within the game.
 -->
 
 <LinearLayout
@@ -25,20 +24,5 @@
             android:name="helpText1"
             style="@style/ContentText"
             android:text="@string/helpContent" />
-
-
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_horizontal|bottom"
-                android:orientation="vertical"
-                android:paddingBottom="15sp">
-                    <Button
-                        android:id="@+id/mainMenuButton"
-                        android:name="mainMenuButton"
-                        style="@style/Button"
-                        android:text="@string/mainMenuButtonText"
-                    />
-        </LinearLayout>
             
 </LinearLayout>
