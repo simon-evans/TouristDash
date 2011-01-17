@@ -22,7 +22,9 @@ public class OptionsActivity extends Activity {
 		
 		setContentView(R.layout.options);
 		
-		Button addCashButton = (Button) findViewById(R.id.addCashButton);
+		/*
+		 * Useful when introducing new upgrades. Should not be available in normal game.
+		 *  Button addCashButton = (Button) findViewById(R.id.addCashButton);
 		
 		addCashButton.setOnClickListener(new OnClickListener() {
 
@@ -34,7 +36,7 @@ public class OptionsActivity extends Activity {
 			}
 		
 		});
-		
+		*/
 		/**
 		 * 
 		 * To stop seek bar getting set to 0 (which would mean it player would never
