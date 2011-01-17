@@ -40,6 +40,7 @@ public class TouristDash extends Activity implements OnClickListener, RollListen
     protected static final int GAMEOVER = 0x8421;
     private static Context CONTEXT;
 	private static final float ROLL_SENSITIVITY = 20;
+	int roll_sensitivity;
     Game game;
     GameCanvas gameCanvas;
     HighScoreOpenHelper highscoresDb;
@@ -57,6 +58,7 @@ public class TouristDash extends Activity implements OnClickListener, RollListen
         init();
         
     	this.playerName = prefs.getString("playerName", "");
+    	this.roll_sensitivity = UserData.getUserData().getSensitivity();
     	
         gameCanvas = new GameCanvas(this, messageHandler);
         gameCanvas.setOnClickListener(this);
@@ -247,8 +249,14 @@ public class TouristDash extends Activity implements OnClickListener, RollListen
 	}
 
 	@Override
+	/**
+	 * 
+	 * We use the 4 because testing showed that 20x roll value was reasonable for
+	 * default sensitivity and slider stored number 1-10
+	 * 
+	 */
 	public void onRollChanged(float roll) {
-        game.userXCoord += (roll * ROLL_SENSITIVITY);
+        game.userXCoord += (roll * (4 * roll_sensitivity));
         if (game.userXCoord > 281) {
             game.userXCoord = 281;
         } else if (game.userXCoord < 0) {

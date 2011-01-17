@@ -40,13 +40,13 @@
 				<category android:name="android.intent.category.DEFAULT" />			
 			</intent-filter>
 		</activity>
-		<activity android:name="org.simonevans.touristdash.library.UpgradesActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar">
+		<activity android:name="org.simonevans.touristdash.library.UpgradesActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 			<intent-filter>
 				<action android:name="org.simonevans.touristdash.library.UPGRADES" />
 				<category android:name="android.intent.category.DEFAULT" />			
 			</intent-filter>
 		</activity>
-		<activity android:name="org.simonevans.touristdash.library.OptionsActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar">
+		<activity android:name="org.simonevans.touristdash.library.menus.OptionsActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 			<intent-filter>
 				<action android:name="org.simonevans.touristdash.library.OPTIONS" />
 				<category android:name="android.intent.category.DEFAULT" />			

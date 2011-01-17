@@ -14,7 +14,15 @@ public class UserData {
 	
 	static int AMMOCOST = 100;
 	
-	static UserData getUserData() {
+	/**
+	 * @TODO: Currently must ensure that class has been initialised before calling this.
+	 * In theory it is initialised when game first boots up. This can be fixed using
+	 * static reference to context now saved in TouristDash class. 
+	 * 
+	 * @return instance of UserData class which provides access to most (@TODO: move rest here)
+	 * of data stored for user.
+	 */
+	public static UserData getUserData() {
 		return userdata;
 	}
 	
@@ -85,26 +93,34 @@ public class UserData {
 	
 	Random earningsRand = new Random(System.currentTimeMillis());
 	
-	int getEarnings() {
+	public int getEarnings() {
 		
 		return earningsRand.nextInt(6) + 2; 
 	}
 	
-	void addCamerasKilled(int num) {
+	public void addCamerasKilled(int num) {
 		int prev = prefs.getInt("camerasKilled", 0);
 		prefEditor.putInt("camerasKilled", prev + num).commit();
 	}
 	
-	void addFattysKilled(int num) {
+	public void addFattysKilled(int num) {
 		int prev = prefs.getInt("fattysKilled", 0);
 		prefEditor.putInt("fattysKilled", prev + num).commit();
 	}
 	
-	int getCamerasKilled() {
+	public int getCamerasKilled() {
 		return prefs.getInt("camerasKilled", 0);
 	}
 	
-	int getFattysKilled() {
+	public int getFattysKilled() {
 		return prefs.getInt("fattysKilled", 0);
+	}
+	
+	public int getSensitivity() {
+		return prefs.getInt("sensitivity", 5);
+	}
+	
+	public void setSensitivity(int newSensitivity) {
+		prefEditor.putInt("sensitivity", newSensitivity).commit();
 	}
 }

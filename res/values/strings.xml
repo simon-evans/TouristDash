@@ -32,4 +32,5 @@
 	<string name="saveButton">Save</string>
 	<string name="closeButton">Cancel</string>
 	<string name="addCashLabel">Add Cash</string>
+	<string name="tiltSensitivity">Tilt Sensitivity</string>
 </resources>

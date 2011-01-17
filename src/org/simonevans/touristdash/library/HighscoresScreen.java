@@ -25,13 +25,6 @@ public class HighscoresScreen extends Activity {
         TableLayout highscoresContainer = (TableLayout) findViewById(R.id.highscoresTable);
         putHighScoreRows(10, highscoresContainer);
 
-        Button mainMenuButton = (Button) findViewById(R.id.mainMenuButton);
-        mainMenuButton.setOnClickListener(new OnClickListener() {
-
-            public void onClick(View v) {
-             finish();
-            }
-        });
 	}
 	
 	HighScoreOpenHelper highscoresDb;
